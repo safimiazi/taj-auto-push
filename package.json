@@ -1,0 +1,55 @@
+{
+    "name": "git-auto-commit",
+    "displayName": "Git Auto Commit",
+    "description": "Automatically commits and pushes changes to configured Git branch",
+    "version": "0.0.1",
+    "engines": {
+        "vscode": "^1.70.0"
+    },
+    "categories": [
+        "Other"
+    ],
+    "activationEvents": [
+        "onStartupFinished"
+    ],
+    "main": "./out/extension.js",
+    "contributes": {
+        "commands": [
+            {
+                "command": "gitAutoCommit.pushNow",
+                "title": "Git Auto Commit: Push Now"
+            }
+        ],
+        "configuration": {
+            "title": "Git Auto Commit",
+            "properties": {
+                "gitAutoCommit.enable": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Enable or disable auto-commit feature"
+                },
+                "gitAutoCommit.branch": {
+                    "type": "string",
+                    "default": "main",
+                    "description": "Git branch to push commits to"
+                },
+                "gitAutoCommit.debounceTime": {
+                    "type": "number",
+                    "default": 3000,
+                    "description": "Debounce time in milliseconds before auto-commit"
+                }
+            }
+        }
+    },
+    "scripts": {
+        "vscode:prepublish": "npm run compile",
+        "compile": "tsc -p ./",
+        "watch": "tsc -watch -p ./"
+    },
+    "devDependencies": {
+        "@types/vscode": "^1.70.0",
+        "@types/node": "^16.11.7",
+        "typescript": "^4.9.3"
+    },
+    "dependencies": {}
+}
