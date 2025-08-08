@@ -70,11 +70,15 @@ exports.deactivate = exports.activate = void 0;
 const vscode = require("vscode");
 const fileWatcher_1 = require("./watchers/fileWatcher");
 const config_1 = require("./config");
+const webviewPanel_1 = require("./views/webviewPanel");
 function activate(context) {
     const repoPath = vscode.workspace.workspaceFolders?.[0].uri.fsPath || '';
     const { isEnabled, branchName, debounceTime } = (0, config_1.getExtensionConfig)();
     (0, fileWatcher_1.createFileWatcher)(context, repoPath, branchName, debounceTime, isEnabled);
     vscode.window.showInformationMessage('Git Auto Commit Extension Activated');
+    context.subscriptions.push(vscode.commands.registerCommand('yourExtension.openUI', () => {
+        webviewPanel_1.WebviewPanel.show(context);
+    }));
 }
 exports.activate = activate;
 function deactivate() { }

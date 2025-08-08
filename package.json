@@ -18,7 +18,11 @@
             {
                 "command": "gitAutoCommit.pushNow",
                 "title": "Git Auto Commit: Push Now"
-            }
+            },
+             {
+      "command": "yourExtension.openUI",
+      "title": "Open Simple Webview"
+    }
         ],
         "configuration": {
             "type": "object",
