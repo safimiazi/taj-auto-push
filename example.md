@@ -42,3 +42,30 @@
 ├── tsconfig.json                 # TypeScript config
 ├── README.md
 └── .gitignore
+
+
+
+
+
+
+
+    // "configuration": {
+        //     "title": "Git Auto Commit",
+        //     "properties": {
+        //         "gitAutoCommit.enable": {
+        //             "type": "boolean",
+        //             "default": true,
+        //             "description": "Enable or disable auto-commit feature"
+        //         },
+        //         "gitAutoCommit.branch": {
+        //             "type": "string",
+        //             "default": "main",
+        //             "description": "Git branch to push commits to"
+        //         },
+        //         "gitAutoCommit.debounceTime": {
+        //             "type": "number",
+        //             "default": 3000,
+        //             "description": "Debounce time in milliseconds before auto-commit"
+        //         }
+        //     }
+        // }

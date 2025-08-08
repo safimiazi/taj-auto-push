@@ -21,22 +21,22 @@
             }
         ],
         "configuration": {
-            "title": "Git Auto Commit",
+            "type": "object",
             "properties": {
                 "gitAutoCommit.enable": {
                     "type": "boolean",
                     "default": true,
-                    "description": "Enable or disable auto-commit feature"
+                    "description": "Enable or disable auto git commit"
                 },
                 "gitAutoCommit.branch": {
                     "type": "string",
                     "default": "main",
-                    "description": "Git branch to push commits to"
+                    "description": "Git branch name to push changes"
                 },
                 "gitAutoCommit.debounceTime": {
                     "type": "number",
                     "default": 3000,
-                    "description": "Debounce time in milliseconds before auto-commit"
+                    "description": "Debounce delay in milliseconds before auto commit"
                 }
             }
         }
@@ -47,9 +47,12 @@
         "watch": "tsc -watch -p ./"
     },
     "devDependencies": {
-        "@types/vscode": "^1.70.0",
+        "@types/mocha": "^10.0.10",
         "@types/node": "^16.11.7",
+        "mocha": "^11.7.1",
         "typescript": "^4.9.3"
     },
-    "dependencies": {}
+    "dependencies": {
+        "@types/vscode": "^1.102.0"
+    }
 }
