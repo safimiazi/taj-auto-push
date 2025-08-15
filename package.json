@@ -3,7 +3,7 @@
     "displayName": "Taj Auto Push",
     "description": "Automatically commits and pushes changes to configured Git branch with optional AI-generated commit messages.",
     "version": "0.0.1",
-    "publisher": "mohebulla miazi",  // <-- Add your Marketplace publisher name here
+    "publisher": "mohebulla miazi", 
     "engines": {
         "vscode": "^1.70.0"
     },
@@ -16,15 +16,15 @@
         "onCommand:gitAutoCommit.pushNow"
     ],
     "main": "./out/extension.js",
-    "icon": "media/icon.png",      // <-- Add an icon for Marketplace
+    "icon": "media/icon.jpg",     
     "repository": {
         "type": "git",
-        "url": "https://github.com/<your-username>/taj-auto-push"
+        "url": "https://github.com/safimiazi/taj-auto-push"
     },
     "bugs": {
-        "url": "https://github.com/<your-username>/taj-auto-push/issues"
+        "url": "https://github.com/safimiazi/taj-auto-push/issues"
     },
-    "homepage": "https://github.com/<your-username>/taj-auto-push",
+    "homepage": "https://github.com/safimiazi/taj-auto-push",
     "contributes": {
         "commands": [
             {

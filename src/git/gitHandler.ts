@@ -1,6 +1,5 @@
 import * as vscode from 'vscode';
 import * as cp from 'child_process';
-import { generateCommitMessageAI } from './commitMessage';
 
 
 export class GitHandler {
@@ -48,25 +47,15 @@ export class GitHandler {
             // git add .
             cp.execSync('git add .', { cwd: repoPath });
 
-            // //git diff --cached --name-only
-            // const changedFiles = cp.execSync('git diff --cached --name-only', { cwd: repoPath }).toString().trim();
-            // if (!changedFiles) return;
+            //git diff --cached --name-only
+            const changedFiles = cp.execSync('git diff --cached --name-only', { cwd: repoPath }).toString().trim();
+            if (!changedFiles) return;
 
-            // // Generate simple commit message
-            // // const commitMessage = `Auto commit: ${changedFiles.split('\n').join(', ')}`;
-            // const commitMessage = generateCommitMessageAI(repoPath, changedFiles)
+            // Generate simple commit message
+            const commitMessage = `Auto commit: ${changedFiles.split('\n').join(', ')}`;
 
 
-            // Get changed files as string
-            const changedFilesStr = cp.execSync('git diff --cached --name-only', { cwd: repoPath }).toString().trim();
-            if (!changedFilesStr) return;
-
-            // Convert string to array of files
-            const changedFilesArray = changedFilesStr.split('\n');
-
-            // Pass array to AI function
-            const commitMessage = await generateCommitMessageAI(repoPath, changedFilesArray);
-
+      
             // git commit -m "message"
             cp.execSync(`git commit -m "${commitMessage}"`, { cwd: repoPath });
 
