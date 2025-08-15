@@ -1,28 +1,40 @@
 {
-    "name": "git-auto-commit",
-    "displayName": "Git Auto Commit",
-    "description": "Automatically commits and pushes changes to configured Git branch",
+    "name": "taj-auto-push",
+    "displayName": "Taj Auto Push",
+    "description": "Automatically commits and pushes changes to configured Git branch with optional AI-generated commit messages.",
     "version": "0.0.1",
+    "publisher": "mohebulla miazi",  // <-- Add your Marketplace publisher name here
     "engines": {
         "vscode": "^1.70.0"
     },
     "categories": [
-        "Other"
+        "Source Control"
     ],
     "activationEvents": [
-        "onStartupFinished"
+        "onStartupFinished",
+        "onCommand:yourExtension.openUI",
+        "onCommand:gitAutoCommit.pushNow"
     ],
     "main": "./out/extension.js",
+    "icon": "media/icon.png",      // <-- Add an icon for Marketplace
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/<your-username>/taj-auto-push"
+    },
+    "bugs": {
+        "url": "https://github.com/<your-username>/taj-auto-push/issues"
+    },
+    "homepage": "https://github.com/<your-username>/taj-auto-push",
     "contributes": {
         "commands": [
             {
                 "command": "gitAutoCommit.pushNow",
                 "title": "Git Auto Commit: Push Now"
             },
-             {
-      "command": "yourExtension.openUI",
-      "title": "Open Simple Webview"
-    }
+            {
+                "command": "yourExtension.openUI",
+                "title": "Open Auto Git UI"
+            }
         ],
         "configuration": {
             "type": "object",
@@ -41,6 +53,16 @@
                     "type": "number",
                     "default": 3000,
                     "description": "Debounce delay in milliseconds before auto commit"
+                },
+                "gitAutoCommit.intervalMinutes": {
+                    "type": "number",
+                    "default": 10,
+                    "description": "Interval in minutes between automatic commits"
+                },
+                "gitAutoCommit.useAI": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Generate commit messages using AI (requires HuggingFace or Ollama setup)"
                 }
             }
         }
@@ -48,15 +70,25 @@
     "scripts": {
         "vscode:prepublish": "npm run compile",
         "compile": "tsc -p ./",
-        "watch": "tsc -watch -p ./"
+        "watch": "tsc -watch -p ./",
+        "package": "vsce package"
     },
     "devDependencies": {
         "@types/mocha": "^10.0.10",
         "@types/node": "^16.11.7",
         "mocha": "^11.7.1",
-        "typescript": "^4.9.3"
+        "typescript": "^4.9.3",
+        "@types/vscode": "^1.102.0"
     },
     "dependencies": {
-        "@types/vscode": "^1.102.0"
-    }
+        "node-fetch": "^3.3.2",
+        "git-commit-ai": "^1.0.0"   
+    },
+    "files": [
+        "out/**/*",
+        "media/**/*",
+        "README.md",
+        "package.json"
+    ],
+    "license": "MIT"
 }

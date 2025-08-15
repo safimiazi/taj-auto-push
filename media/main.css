@@ -1,14 +1,72 @@
-body {
-  font-family: sans-serif;
-  padding: 20px;
-  background-color: #f9f9f9;
-}
-
-h1 {
-  color: #3a3a3a;
-}
-
-button {
-  padding: 10px 20px;
-  font-size: 16px;
-}
+  body {
+                font-family: Arial, sans-serif;
+                background-color: #1e1e1e;
+                color: #e0e0e0;
+                margin: 0;
+                padding: 20px;
+            }
+            h1 {
+                text-align: center;
+                color: #4fc3f7;
+                font-size: 20px;
+                margin-bottom: 20px;
+            }
+            .control {
+                background: #252526;
+                padding: 20px;
+                border-radius: 10px;
+                max-width: 400px;
+                margin: 0 auto;
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+                display: flex;
+                flex-direction: column;
+                gap: 15px;
+            }
+            label {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                font-size: 14px;
+            }
+            input[type="number"] {
+                width: 80px;
+                padding: 5px;
+                border: none;
+                border-radius: 5px;
+                background: #333;
+                color: #fff;
+            }
+            input[type="checkbox"] {
+                transform: scale(1.3);
+            }
+            button {
+                background-color: #4fc3f7;
+                color: #1e1e1e;
+                padding: 10px;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                font-weight: bold;
+                transition: background 0.3s ease;
+            }
+            button:hover {
+                background-color: #29b6f6;
+            }
+            .note {
+                margin-top: 30px;
+                padding: 15px;
+                background: #333;
+                border-radius: 8px;
+                font-size: 13px;
+                line-height: 1.5;
+            }
+            .note h2 {
+                color: #81d4fa;
+                font-size: 16px;
+                margin-bottom: 10px;
+            }
+            @media (max-width: 500px) {
+                .control {
+                    width: 90%;
+                }
+            }

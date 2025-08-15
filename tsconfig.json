@@ -3,9 +3,13 @@
         "module": "commonjs",
         "target": "es2020",
         "outDir": "out",
+        // "lib": [
+        //     "es2020"
+        // ],
         "lib": [
-            "es2020"
-        ],
+            "ESNext",
+            "DOM"
+        ], // <-- add "DOM"
         "types": [
             "node",
             "mocha"
