@@ -2,18 +2,17 @@
     "name": "taj-auto-push",
     "displayName": "Taj Auto Push",
     "description": "Automatically commits and pushes changes to configured Git branch with optional AI-generated commit messages.",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "publisher": "MohebullaMiaziShafi",
     "engines": {
         "vscode": "^1.70.0"
     },
-  "categories": ["Other"],
-
-
-    "activationEvents": [
-   "*"
+    "categories": [
+        "Other"
     ],
-
+    "activationEvents": [
+        "*"
+    ],
     "main": "./out/extension.js",
     "icon": "media/icon.jpg",
     "repository": {
@@ -25,6 +24,24 @@
     },
     "homepage": "https://github.com/safimiazi/taj-auto-push",
     "contributes": {
+         "viewsContainers": {
+        "activitybar": [
+            {
+                "id": "tajAutoPushSidebar",
+                "title": "Taj Auto Push",
+                "icon": "media/taj.svg"
+            }
+        ]
+    },
+    "views": {
+        "tajAutoPushSidebar": [
+            {
+                "id": "tajAutoPushView",
+                "name": "Taj Auto Push View",
+                "type": "webview"
+            }
+        ]
+    },
         "commands": [
             {
                 "command": "gitAutoCommit.pushNow",
@@ -32,7 +49,7 @@
             },
             {
                 "command": "yourExtension.openUI",
-                "title": "Open Auto Git UI"
+                "title": "Taj Auto Push"
             }
         ],
         "configuration": {
@@ -83,6 +100,5 @@
         "git-commit-ai": "^1.0.0",
         "node-fetch": "^3.3.2"
     },
-
     "license": "MIT"
 }

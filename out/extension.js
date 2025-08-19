@@ -12,6 +12,17 @@ function activate(context) {
     context.subscriptions.push(vscode.commands.registerCommand('yourExtension.openUI', () => {
         webviewPanel_1.WebviewPanel.show(context, gitHandler); // Pass GitHandler to Webview
     }));
+    // ------------------------------
+    // Sidebar (Activity Bar) integration
+    // ------------------------------
+    const provider = new class {
+        resolveWebviewView(webviewView) {
+            webviewPanel_1.WebviewPanel.showInWebviewView(webviewView, context, gitHandler);
+        }
+    };
+    context.subscriptions.push(vscode.window.registerWebviewViewProvider('tajAutoPushView', // এই ID package.json এর সাথে match করবে
+    provider));
+    // ------------------------------
     vscode.window.showInformationMessage('Git Auto Commit Extension Activated');
     // Automatically open UI on activation
     vscode.commands.executeCommand('yourExtension.openUI');

@@ -73,14 +73,14 @@ export class GitHandler {
             // ✅ Build meaningful commit message
 
 
-            // ✅ Get changes with status (M=Modified, A=Added, D=Deleted)
+            // ✅ Get changes with status (M=Modified, A=Added, D=Deleted, R=Renamed)
             const { stdout: changedFiles } = await exec("git diff --cached --name-status", { cwd: repoPath });
             if (!changedFiles.trim()) {
                 vscode.window.showInformationMessage("No changes to commit");
                 return;
             }
 
-            // ✅ Build meaningful commit message
+            // ✅ Build one-line commit message
             const changes = changedFiles
                 .split("\n")
                 .filter(Boolean)
@@ -95,20 +95,11 @@ export class GitHandler {
                     }
                 });
 
-            const commitMessage = `Auto commit:\n${changes.map(c => "- " + c).join("\n")}`;
-            // ✅ Commit with detailed message
-            // await exec(`git commit -m "${commitMessage}"`, { cwd: repoPath });
+            // ✅ Join changes in a single line with comma
+            const commitMessage = `Auto commit: ${changes.join(", ")}`;
 
-            // Write commit message to temp file
-            const tmpFile = path.join(repoPath, "tmp_commit_message.txt");
-            fs.writeFileSync(tmpFile, commitMessage);
-
-            // Use git commit -F to read message from file
-            await exec(`git commit -F "${tmpFile}"`, { cwd: repoPath });
-
-            // Delete temp file
-            fs.unlinkSync(tmpFile);
-
+            // ✅ Commit directly with message
+            await exec(`git commit -m "${commitMessage}"`, { cwd: repoPath });
 
             // ✅ Get current branch
             const { stdout: branchName } = await exec("git rev-parse --abbrev-ref HEAD", { cwd: repoPath });

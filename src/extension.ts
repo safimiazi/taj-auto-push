@@ -1,5 +1,4 @@
 import * as vscode from 'vscode';
-import { getExtensionConfig } from './config';
 import { WebviewPanel } from './views/webviewPanel';
 import { GitHandler } from './git/gitHandler';
 
@@ -18,6 +17,24 @@ export function activate(context: vscode.ExtensionContext) {
             WebviewPanel.show(context, gitHandler); // Pass GitHandler to Webview
         })
     );
+
+        // ------------------------------
+    // Sidebar (Activity Bar) integration
+    // ------------------------------
+    const provider = new class implements vscode.WebviewViewProvider {
+        resolveWebviewView(webviewView: vscode.WebviewView) {
+            WebviewPanel.showInWebviewView(webviewView, context, gitHandler);
+        }
+    };
+
+    context.subscriptions.push(
+        vscode.window.registerWebviewViewProvider(
+            'tajAutoPushView', // এই ID package.json এর সাথে match করবে
+            provider
+        )
+    );
+    // ------------------------------
+
 
     vscode.window.showInformationMessage('Git Auto Commit Extension Activated');
     // Automatically open UI on activation

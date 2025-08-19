@@ -4,8 +4,6 @@ exports.GitHandler = void 0;
 const vscode = require("vscode");
 const cp = require("child_process");
 const util_1 = require("util");
-const fs = require("fs");
-const path = require("path");
 const exec = (0, util_1.promisify)(cp.exec);
 class GitHandler {
     constructor(context) {
@@ -59,13 +57,13 @@ class GitHandler {
             // const commitMessage = `Auto commit: ${changedFiles.split("\n").filter(Boolean).join(", ")}`;
             // await exec(`git commit -m "${commitMessage}"`, { cwd: repoPath });
             // ✅ Build meaningful commit message
-            // ✅ Get changes with status (M=Modified, A=Added, D=Deleted)
+            // ✅ Get changes with status (M=Modified, A=Added, D=Deleted, R=Renamed)
             const { stdout: changedFiles } = await exec("git diff --cached --name-status", { cwd: repoPath });
             if (!changedFiles.trim()) {
                 vscode.window.showInformationMessage("No changes to commit");
                 return;
             }
-            // ✅ Build meaningful commit message
+            // ✅ Build one-line commit message
             const changes = changedFiles
                 .split("\n")
                 .filter(Boolean)
@@ -79,16 +77,10 @@ class GitHandler {
                     default: return `${status} ${file}`;
                 }
             });
-            const commitMessage = `Auto commit:\n${changes.map(c => "- " + c).join("\n")}`;
-            // ✅ Commit with detailed message
-            // await exec(`git commit -m "${commitMessage}"`, { cwd: repoPath });
-            // Write commit message to temp file
-            const tmpFile = path.join(repoPath, "tmp_commit_message.txt");
-            fs.writeFileSync(tmpFile, commitMessage);
-            // Use git commit -F to read message from file
-            await exec(`git commit -F "${tmpFile}"`, { cwd: repoPath });
-            // Delete temp file
-            fs.unlinkSync(tmpFile);
+            // ✅ Join changes in a single line with comma
+            const commitMessage = `Auto commit: ${changes.join(", ")}`;
+            // ✅ Commit directly with message
+            await exec(`git commit -m "${commitMessage}"`, { cwd: repoPath });
             // ✅ Get current branch
             const { stdout: branchName } = await exec("git rev-parse --abbrev-ref HEAD", { cwd: repoPath });
             const branch = branchName.trim();

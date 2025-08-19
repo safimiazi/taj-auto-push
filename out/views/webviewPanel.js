@@ -18,6 +18,24 @@ class WebviewPanel {
                 gitHandler.startTimer(message.minutes);
         }, undefined, context.subscriptions);
     }
+    static showInWebviewView(webviewView, context, gitHandler) {
+        // Enable JS in the sidebar webview
+        webviewView.webview.options = { enableScripts: true };
+        // CSS & JS files URI
+        const stylePath = vscode.Uri.file(path.join(context.extensionPath, 'media', 'main.css'));
+        const scriptPath = vscode.Uri.file(path.join(context.extensionPath, 'media', 'script.js'));
+        const styleUri = webviewView.webview.asWebviewUri(stylePath);
+        const scriptUri = webviewView.webview.asWebviewUri(scriptPath);
+        // Set sidebar HTML directly to the webviewView
+        webviewView.webview.html = WebviewPanel.getHtml(styleUri, scriptUri);
+        // Message listener
+        webviewView.webview.onDidReceiveMessage(message => {
+            if (message.type === 'toggle')
+                gitHandler.toggle(message.enabled);
+            if (message.type === 'setInterval')
+                gitHandler.startTimer(message.minutes);
+        }, undefined, context.subscriptions);
+    }
     static getHtml(styleUri, scriptUri) {
         return `
         <!DOCTYPE html>
@@ -29,7 +47,7 @@ class WebviewPanel {
             <title>Taj Auto Push</title>
         </head>
         <body>
-            <h1>Taj Auto Push Extension</h1>
+            <h1>Taj Auto Push</h1>
         <div class="control">
             <label>
                 <span>Enable Auto Git:</span>
