@@ -6,8 +6,6 @@ import { GitHandler } from './git/gitHandler';
 let gitHandler: GitHandler;
 
 export function activate(context: vscode.ExtensionContext) {
-    const repoPath = vscode.workspace.workspaceFolders?.[0].uri.fsPath || '';
-    const { isEnabled, branchName, debounceTime } = getExtensionConfig();
 
     // GitHandler instance create
     gitHandler = new GitHandler(context);
@@ -15,6 +13,7 @@ export function activate(context: vscode.ExtensionContext) {
 
     vscode.window.showInformationMessage('Git Auto Commit Extension Activated');
 
+    
     // Webview open command
     context.subscriptions.push(
         vscode.commands.registerCommand('yourExtension.openUI', () => {

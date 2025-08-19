@@ -50,6 +50,12 @@ class WebviewPanel {
             <p>💡 This is an <b>open-source</b> project. More advanced features (AI commit messages, branch switching, selective file commit, etc.) are coming soon.</p>
         </div>
 
+     <footer style="margin-top: 20px; font-size: 0.9em; color: gray;">
+            Created by <b>Mohebulla Miazi Shafi</b> | 
+            <a href="https://www.linkedin.com/in/shafimiazi" target="_blank">LinkedIn</a> | 
+            <a href="https://www.facebook.com/shafimiazi1" target="_blank">Facebook</a>
+        </footer>
+
         <script src="${scriptUri}"></script>
         </body>
         </html>

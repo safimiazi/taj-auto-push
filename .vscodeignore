@@ -1,11 +1,11 @@
-.vscode/**
-.vscode-test/**
-src/**
+# Ignore node_modules except your dependencies
+node_modules
+out/test
+.vscode
+*.log
+*.ts
+.git
 .gitignore
-.yarnrc
-vsc-extension-quickstart.md
-**/tsconfig.json
-**/eslint.config.mjs
-**/*.map
-**/*.ts
-**/.vscode-test.*
+README.md
+LICENSE
+.env

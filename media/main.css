@@ -7,7 +7,7 @@
             }
             h1 {
                 text-align: center;
-                color: #4fc3f7;
+                color: #B2A5FF;
                 font-size: 20px;
                 margin-bottom: 20px;
             }
@@ -40,7 +40,7 @@
                 transform: scale(1.3);
             }
             button {
-                background-color: #4fc3f7;
+                background-color: #B2A5FF;
                 color: #1e1e1e;
                 padding: 10px;
                 border: none;
@@ -50,7 +50,7 @@
                 transition: background 0.3s ease;
             }
             button:hover {
-                background-color: #29b6f6;
+                background-color: #B2A5FF;
             }
             .note {
                 margin-top: 30px;
@@ -61,7 +61,7 @@
                 line-height: 1.5;
             }
             .note h2 {
-                color: #81d4fa;
+                color: #B2A5FF;
                 font-size: 16px;
                 margin-bottom: 10px;
             }
