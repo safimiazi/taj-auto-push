@@ -2,7 +2,7 @@
     "name": "taj-auto-push",
     "displayName": "Taj Auto Push",
     "description": "Automatically commits and pushes changes to configured Git branch with optional AI-generated commit messages.",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "publisher": "MohebullaMiaziShafi",
     "engines": {
         "vscode": "^1.70.0"
