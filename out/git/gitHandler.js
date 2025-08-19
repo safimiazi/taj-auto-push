@@ -78,7 +78,7 @@ class GitHandler {
                 }
             });
             // ✅ Join changes in a single line with comma
-            const commitMessage = `Auto commit: ${changes.join(", ")}`;
+            const commitMessage = `${changes.join(", ")}`;
             // ✅ Commit directly with message
             await exec(`git commit -m "${commitMessage}"`, { cwd: repoPath });
             // ✅ Get current branch
