@@ -11,15 +11,18 @@ export function activate(context: vscode.ExtensionContext) {
     gitHandler = new GitHandler(context);
 
 
-    vscode.window.showInformationMessage('Git Auto Commit Extension Activated');
 
-    
     // Webview open command
     context.subscriptions.push(
         vscode.commands.registerCommand('yourExtension.openUI', () => {
             WebviewPanel.show(context, gitHandler); // Pass GitHandler to Webview
         })
     );
+
+    vscode.window.showInformationMessage('Git Auto Commit Extension Activated');
+    // Automatically open UI on activation
+    vscode.commands.executeCommand('yourExtension.openUI');
+
 }
 
 export function deactivate() {

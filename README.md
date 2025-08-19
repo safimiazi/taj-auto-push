@@ -23,7 +23,7 @@
 - Your changes will be automatically pushed every 10 minutes  
 
 ## 👨‍💻 Creator
-Created by **Safi Mianchi**  
+Created by **Mohebulla Miazi Shafi**  
 - [LinkedIn](https://www.linkedin.com/in/shafimiazi/)  
 - [Facebook](https://www.facebook.com/shafimiazi1)  
 - [GitHub](https://github.com/safimiazi/taj-auto-push)  
